@@ -6,5 +6,5 @@ sudo dnf -y install git ansible
 sudo cd /root
 sudo git clone https://github.com/MaliciousGenius/gui-control-panel-ansible.git
 sudo cd gui-control-panel-ansible
-ansible-playbook ./mothership.yml
+sudo ansible-playbook ./control-panel.yml
 ```
