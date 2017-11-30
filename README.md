@@ -3,8 +3,8 @@
 cd comandline and printe:<br>
 ```
 sudo dnf -y install git ansible
-sudo cd /root
+sudo cd /home/Administrator
 sudo git clone https://github.com/MaliciousGenius/gui-control-panel-ansible.git
-sudo cd gui-control-panel-ansible
+sudo cd ./gui-control-panel-ansible
 sudo ansible-playbook ./control-panel.yml
 ```
