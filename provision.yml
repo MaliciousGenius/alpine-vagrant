@@ -1,8 +1,6 @@
 - hosts: localhost
   connection: local
-#  vars:
-#    # Arch's default python is python3
-#    ansible_python_interpreter: "/usr/bin/env python2"
+
   tasks:
     - name: install python2-dnf
       command: dnf install -y python2-dnf
