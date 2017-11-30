@@ -28,6 +28,12 @@
         state: installed
       with_items:
         - git
+        - gcc
+        - automake
+        - make
+        - kernel-headers
+        - kernel-devel
+        - perl
 #        - vagrant
 #        - vagrant-libvirt
 #        - virt-manager
