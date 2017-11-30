@@ -1,0 +1,36 @@
+- hosts: localhost
+  connection: local
+  vars:
+    # Arch's default python is python3
+    ansible_python_interpreter: "/usr/bin/env python2"
+
+  tasks:
+    - name: install python2-dnf
+      command: dnf install -y python2-dnf
+      become: yes
+
+    - name: add docker yum repo
+      yum_repository:
+          name: docker
+          description: Docker Official
+          baseurl: http://yum.dockerproject.org/repo/main/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
+          enabled: yes
+          gpgkey: http://yum.dockerproject.org/gpg
+
+    - name: update all packages
+      dnf:
+          name: "*"
+          state: latest
+      become: yes
+
+    - name: install packages
+      dnf:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+      - git
+      - vagrant
+      - vagrant-libvirt
+      - virt-manager
+      - docker-ce
+      become: yes
