@@ -1,9 +1,8 @@
 - hosts: localhost
   connection: local
-  vars:
-    # Arch's default python is python3
-    ansible_python_interpreter: "/usr/bin/env python2"
-
+#  vars:
+#    # Arch's default python is python3
+#    ansible_python_interpreter: "/usr/bin/env python2"
   tasks:
     - name: install python2-dnf
       command: dnf install -y python2-dnf
@@ -18,19 +17,33 @@
           gpgkey: http://yum.dockerproject.org/gpg
 
     - name: update all packages
-      dnf:
+      package:
           name: "*"
           state: latest
       become: yes
 
     - name: install packages
-      dnf:
+      package:
         name: "{{ item }}"
-        state: latest
+        state: installed
       with_items:
-      - git
-      - vagrant
-      - vagrant-libvirt
-      - virt-manager
-      - docker-ce
+        - git
+#        - vagrant
+#        - vagrant-libvirt
+#        - virt-manager
+#        - docker-ce
       become: yes
+
+    - name: disable services
+      service:
+        name: "{{ item }}"
+        enabled: no
+      with_items:
+        - bluetooth
+        - cups
+        - dmraid-activation
+        - iscsi
+        - lvm2-monitor
+        - mcelog
+        - mdmonitor
+        - multipathd
